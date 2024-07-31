@@ -86,8 +86,6 @@ def main():
     # Predefined tasks
     todo_list.add_task("Buy groceries", "Medium")
     todo_list.add_task("Pay bills", "High")
-    todo_list.add_task("Read a book", "Low")
-    todo_list.add_task("Exercise", "High")
     todo_list.add_task("Walk", "Medium")
     todo_list.add_task("Talk with friends", "High")
     todo_list.add_task("Study", "High")

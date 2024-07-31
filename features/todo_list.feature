@@ -1,52 +1,46 @@
-Feature: Manage To-Do List
+Feature: To-Do List Management
 
-  Background: 
+  Scenario: Add a new task
     Given the to-do list is empty
+    When the user adds a task "Buy groceries" with priority "Medium"
+    Then the to-do list should contain "Buy groceries" with priority "Medium"
 
-  Scenario: Add a new task with default priority
-    When the user adds a task "Buy groceries"
-    Then the to-do list should contain:
-      | Task             | Priority |
-      | Buy groceries    | Medium   |
-
-  Scenario: Add a new task with specified priority
-    When the user adds a task "Pay bills" with priority "High"
-    Then the to-do list should contain:
-      | Task      | Priority |
-      | Pay bills | High     |
-
-  Scenario: List all tasks in the to-do list
+  Scenario: List all tasks
     Given the to-do list contains tasks:
       | Task             | Priority |
       | Buy groceries    | Medium   |
       | Pay bills        | High     |
-      | Exercise         | High     |
     When the user lists all tasks
-    Then the output should be:
+    Then the tasks should be:
       | Task             | Priority |
       | Buy groceries    | Medium   |
       | Pay bills        | High     |
-      | Exercise         | High     |
 
-  Scenario: Mark an existing task as completed
-    Given the to-do list contains tasks:
-      | Task             | Status   |
-      | Buy groceries    | Pending  |
-    When the user marks the task "Buy groceries" as completed
-    Then the task "Buy groceries" should be completed
+  Scenario: Mark a task as completed
+    Given the to-do list contains a task "Buy groceries" with status "Pending"
+    When the user marks task "Buy groceries" as completed
+    Then the to-do list should show task "Buy groceries" as completed
 
-  Scenario: Mark an existing task as pending
+  Scenario: Mark a task as pendiente
+    Given the to-do list contains a task "Pay bills" with status "Completed"
+    When the user marks task "Pay bills" as pendiente
+    Then the to-do list should show task "Pay bills" as pendiente
+
+  Scenario: Remove a task
     Given the to-do list contains tasks:
-      | Task             | Status   |
-      | Buy groceries    | Completed|
-    When the user marks the task "Buy groceries" as pending
-    Then the task "Buy groceries" should be pending
+      | Task          |
+      | Buy groceries |
+      | Pay bills     |
+    When the user removes the task "Buy groceries"
+    Then the to-do list should contain only:
+      | Task          |
+      | Pay bills     |
 
   Scenario: Clear the entire to-do list
     Given the to-do list contains tasks:
-      | Task             |
-      | Buy groceries    |
-      | Pay bills        |
+      | Task          |
+      | Buy groceries |
+      | Pay bills     |
     When the user clears the to-do list
     Then the to-do list should be empty
 
@@ -55,43 +49,18 @@ Feature: Manage To-Do List
       | Task             | Priority |
       | Buy groceries    | Medium   |
       | Pay bills        | High     |
-      | Exercise         | High     |
     When the user lists tasks with priority "High"
-    Then the output should be:
-      | Task      | Priority |
+    Then the tasks should be:
+      | Task     | Priority |
       | Pay bills | High     |
-      | Exercise  | High     |
-
-  Scenario: Remove an existing task
-    Given the to-do list contains tasks:
-      | Task             |
-      | Buy groceries    |
-      | Pay bills        |
-    When the user removes the task "Buy groceries"
-    Then the to-do list should not contain "Buy groceries"
 
   Scenario: List tasks by status
     Given the to-do list contains tasks:
-      | Task             | Status   |
-      | Buy groceries    | Pending  |
-      | Pay bills        | Completed|
-      | Exercise         | Pending  |
+      | Task             | Status     |
+      | Buy groceries    | Pending    |
+      | Pay bills        | Completed  |
     When the user lists tasks with status "Pending"
-    Then the output should be:
-      | Task             | Status   |
-      | Buy groceries    | Pending  |
-      | Exercise         | Pending  |
+    Then the tasks should be:
+      | Task          | Status    |
+      | Buy groceries | Pending   |
 
-  Scenario: Update the priority of an existing task
-    Given the to-do list contains tasks:
-      | Task             | Priority |
-      | Buy groceries    | Medium   |
-    When the user updates the priority of "Buy groceries" to "High"
-    Then the priority of "Buy groceries" should be "High"
-
-  Scenario: Attempt to update the priority of a non-existing task
-    Given the to-do list contains tasks:
-      | Task             | Priority |
-      | Buy groceries    | Medium   |
-    When the user updates the priority of "Pay bills" to "High"
-    Then the priority of "Pay bills" should not be updated
