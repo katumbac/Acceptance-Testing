@@ -92,7 +92,7 @@ def main():
 
     # Mark a task as completed
     todo_list.mark_task_completed("Buy groceries")
-    todo_list.mark_task_completed("Study")
+    todo_list.mark_task_pendiente("Buy groceries")
 
     # Update priority of a task
     todo_list.update_task_priority("Read a book", "Medium")

@@ -64,3 +64,7 @@ Feature: To-Do List Management
       | Task          | Status    |
       | Buy groceries | Pending   |
 
+  Scenario: Update task priority
+    Given the to-do list contains a task "Buy groceries" with priority "Medium"
+    When the user updates the priority of "Buy groceries" to "High"
+    Then the priority of "Buy groceries" should be "High"
