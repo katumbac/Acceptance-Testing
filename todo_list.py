@@ -91,8 +91,9 @@ def main():
     todo_list.add_task("Study", "High")
 
     # Mark a task as completed
-    todo_list.mark_task_completed("Buy groceries")
     todo_list.mark_task_pendiente("Buy groceries")
+    todo_list.mark_task_completed("Buy groceries")
+    todo_list.mark_task_completed("Pay bills")
 
     # Update priority of a task
     todo_list.update_task_priority("Read a book", "Medium")
@@ -101,8 +102,8 @@ def main():
     print_summary(todo_list)
 
     # Remove a task
-    todo_list.remove_task("Read a book")
-    print("\nTo-Do List after removing 'Read a book':")
+    todo_list.remove_task("Buy groceries")
+    print("\nTo-Do List after removing 'Buy groceries':")
     print_summary(todo_list)
 
     # Clear the list

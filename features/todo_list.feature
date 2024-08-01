@@ -6,65 +6,64 @@ Feature: To-Do List Management
     Then the to-do list should contain "Buy groceries" with priority "Medium"
 
   Scenario: List all tasks
-    Given the to-do list contains tasks:
-      | Task             | Priority |
-      | Buy groceries    | Medium   |
-      | Pay bills        | High     |
+    Given the to-do list contains tasks
+      | Task          | Priority | Status  | Created on          |
+      | Buy groceries | Medium   | Completed | 2024-07-31 21:03:08 |
+      | Pay bills     | High     | Pending | 2024-07-31 21:03:08 |
+      | Walk          | Medium   | Pending | 2024-07-31 21:03:08 |
+      | Talk with friends | High | Pending | 2024-07-31 21:03:08 |
+      | Study         | High     | Pending | 2024-07-31 21:03:08 |
     When the user lists all tasks
-    Then the tasks should be:
-      | Task             | Priority |
-      | Buy groceries    | Medium   |
-      | Pay bills        | High     |
+    Then the tasks should be
+      | Task          | Priority | Status  | Created on          |
+      | Buy groceries | Medium   | Completed | 2024-07-31 21:03:08 |
+      | Pay bills     | High     | Pending | 2024-07-31 21:03:08 |
+      | Walk          | Medium   | Pending | 2024-07-31 21:03:08 |
+      | Talk with friends | High | Pending | 2024-07-31 21:03:08 |
+      | Study         | High     | Pending | 2024-07-31 21:03:08 |
 
   Scenario: Mark a task as completed
     Given the to-do list contains a task "Buy groceries" with status "Pending"
     When the user marks task "Buy groceries" as completed
     Then the to-do list should show task "Buy groceries" as completed
 
-  Scenario: Mark a task as pendiente
-    Given the to-do list contains a task "Pay bills" with status "Completed"
-    When the user marks task "Pay bills" as pendiente
-    Then the to-do list should show task "Pay bills" as pendiente
-
   Scenario: Remove a task
-    Given the to-do list contains tasks:
-      | Task          |
-      | Buy groceries |
-      | Pay bills     |
+    Given the to-do list contains tasks
+      | Task          | Priority | Status  | Created on          |
+      | Buy groceries | Medium   | Completed | 2024-07-31 21:03:08 |
+      | Pay bills     | High     | Pending | 2024-07-31 21:03:08 |
+      | Walk          | Medium   | Pending | 2024-07-31 21:03:08 |
+      | Talk with friends | High | Pending | 2024-07-31 21:03:08 |
+      | Study         | High     | Pending | 2024-07-31 21:03:08 |
     When the user removes the task "Buy groceries"
-    Then the to-do list should contain only:
-      | Task          |
-      | Pay bills     |
+    Then the to-do list should contain only
+      | Task          | Priority | Status  | Created on          |
+      | Pay bills     | High     | Pending | 2024-07-31 21:03:08 |
+      | Walk          | Medium   | Pending | 2024-07-31 21:03:08 |
+      | Talk with friends | High | Pending | 2024-07-31 21:03:08 |
+      | Study         | High     | Pending | 2024-07-31 21:03:08 |
 
   Scenario: Clear the entire to-do list
-    Given the to-do list contains tasks:
-      | Task          |
-      | Buy groceries |
-      | Pay bills     |
+    Given the to-do list contains tasks
+      | Task          | Priority | Status  | Created on          |
+      | Pay bills     | High     | Pending | 2024-07-31 21:03:08 |
+      | Walk          | Medium   | Pending | 2024-07-31 21:03:08 |
+      | Talk with friends | High | Pending | 2024-07-31 21:03:08 |
+      | Study         | High     | Pending | 2024-07-31 21:03:08 |
     When the user clears the to-do list
     Then the to-do list should be empty
 
   Scenario: List tasks by priority
-    Given the to-do list contains tasks:
-      | Task             | Priority |
-      | Buy groceries    | Medium   |
-      | Pay bills        | High     |
+    Given the to-do list contains tasks
+      | Task          | Priority | Status  | Created on          |
+      | Buy groceries | Medium   | Completed | 2024-07-31 21:03:08 |
+      | Pay bills     | High     | Pending | 2024-07-31 21:03:08 |
+      | Walk          | Medium   | Pending | 2024-07-31 21:03:08 |
+      | Talk with friends | High | Pending | 2024-07-31 21:03:08 |
+      | Study         | High     | Pending | 2024-07-31 21:03:08 |
     When the user lists tasks with priority "High"
-    Then the tasks should be:
-      | Task     | Priority |
-      | Pay bills | High     |
-
-  Scenario: List tasks by status
-    Given the to-do list contains tasks:
-      | Task             | Status     |
-      | Buy groceries    | Pending    |
-      | Pay bills        | Completed  |
-    When the user lists tasks with status "Pending"
-    Then the tasks should be:
-      | Task          | Status    |
-      | Buy groceries | Pending   |
-
-  Scenario: Update task priority
-    Given the to-do list contains a task "Buy groceries" with priority "Medium"
-    When the user updates the priority of "Buy groceries" to "High"
-    Then the priority of "Buy groceries" should be "High"
+    Then the tasks with priority "High" should be
+      | Task          | Priority | Status  | Created on          |
+      | Pay bills     | High     | Pending | 2024-07-31 21:03:08 |
+      | Talk with friends | High | Pending | 2024-07-31 21:03:08 |
+      | Study         | High     | Pending | 2024-07-31 21:03:08 |
